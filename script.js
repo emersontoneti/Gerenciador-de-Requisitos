@@ -26,4 +26,10 @@ form.addEventListener("submit", function(e){
   setTimeout(()=> card.classList.remove("success"), 800);
   form.reset();
   setTimeout(()=> mensagem.classList.remove("show"),3000);
+
+setTimeout(() => {
+  window.location.href = "requisitos.html";
+}, 2000);
+ 
+
 });
