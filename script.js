@@ -28,7 +28,7 @@ form.addEventListener("submit", function(e){
   setTimeout(()=> mensagem.classList.remove("show"),3000);
 
 setTimeout(() => {
-  window.location.href = "requisitos.html";
+  window.location.href = "interfacederequisitos/requisitos.html";
 }, 2000);
  
 
