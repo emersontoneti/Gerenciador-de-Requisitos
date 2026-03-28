@@ -1,13 +1,15 @@
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2);
+    
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start; 
+    
+    min-height: 100vh; 
+    padding: 20px;
     margin: 0;
 }
-
 form {
     background-color: #ffffff;
     padding: 40px;
@@ -16,20 +18,14 @@ form {
     width: 400px;
     transition: transform 0.5s ease;
 }
-
-
 form:hover {
     transform: translateY(-5px);
 }
-
-
 h2 {
     text-align: center;
     margin-bottom: 25px;
     color: #333;
 }
-
-
 label {
     display: block;
     margin-top: 15px;
@@ -37,8 +33,6 @@ label {
     font-weight: bold;
     color: #555;
 }
-
-
 input[type="text"], textarea, select {
     width: 100%;
     padding: 12px;
@@ -49,26 +43,18 @@ input[type="text"], textarea, select {
     font-size: 14px;
     transition: all 0.3s ease;
 }
-
-
 input:focus, textarea:focus, select:focus {
     border-color: #667eea;
     box-shadow: 0 0 8px rgba(102,126,234,0.5);
     outline: none;
 }
-
-
 textarea {
     resize: vertical;
     height: 90px;
 }
-
-
 input[type="radio"] {
     margin-right: 5px;
 }
-
-
 form button {
     display: block;
     width: 100%;
@@ -83,17 +69,13 @@ form button {
     font-weight: bold;
     transition: all 0.3s ease;
 }
-
 form button:hover {
     background-color: #5a67d8;
     transform: scale(1.02);
 }
-
 form button:active {
     transform: scale(0.98);
 }
-
-
 #mensagem {
     text-align: center;
     margin-top: 15px;
@@ -104,29 +86,23 @@ form button:active {
     transform: translateY(10px);
     transition: all 0.5s ease;
 }
-
 #mensagem.show {
     opacity: 1;
     transform: translateY(0);
 }
-
 #mensagem.sucesso {
     background: #e6f9ec;
     color: #2e7d32;
 }
-
 #mensagem.erro {
     background: #fdecea;
     color: #c62828;
 }
-
-
 #historicoTemp {
     position: fixed;
     bottom: 20px;
     right: 20px;
 }
-
 .card-temp {
     background: #fff;
     border-left: 5px solid #4CAF50;
@@ -138,8 +114,6 @@ form button:active {
     position: relative;
     width: 250px;
 }
-
-
 .card-temp button {
     position: absolute;
     top: 6px;
@@ -154,11 +128,43 @@ form button:active {
     width: auto;
     line-height: 1;
 }
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
 
+    background: transparent; 
+}
+.nav-buttons button {
+    flex: 1;
+    padding: 10px;
+    background-color: #667eea; 
+    color: #fff;
+    border: none; 
+    border-radius: 6px;
+
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+
+    transition: all 0.3s ease;
+
+    width: auto;
+    margin: 0;
+}
+
+.nav-buttons button:hover {
+    background-color: #5a67d8;
+    transform: translateY(-2px);
+}
+
+.nav-buttons button:active {
+    transform: scale(0.97);
+}
 .card-temp button:hover {
     color: #000;
 }
-
 
 @keyframes aparecer {
     from {
@@ -170,7 +176,6 @@ form button:active {
         transform: translateY(0);
     }
 }
-
 @keyframes fadeOut {
     to {
         opacity: 0;

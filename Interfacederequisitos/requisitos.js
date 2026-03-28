@@ -1,7 +1,6 @@
 const form = document.getElementById("formRequisito");
 const mensagem = document.getElementById("mensagem");
 
-
 function mostrarHistoricoTemp(req) {
     const container = document.getElementById("historicoTemp");
 
@@ -15,23 +14,18 @@ function mostrarHistoricoTemp(req) {
         ${req.tipo} | ${req.prioridade} | ${req.status}
     `;
 
-    
     const botao = div.querySelector("button");
-
     botao.onclick = () => {
         if (confirm("Deseja excluir este requisito?")) {
             div.remove();
         }
     };
-
     container.appendChild(div);
 
-   
     setTimeout(() => {
         div.remove();
     }, 4000);
 }
-
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
@@ -42,16 +36,13 @@ form.addEventListener("submit", function(e) {
     let status = document.getElementById("status").value;
     let prioridadeSelecionada = document.querySelector('input[name="prioridade"]:checked');
 
-   
     if (titulo === "" || descricao === "" || tipo === "" || !prioridadeSelecionada) {
         mensagem.className = "show erro";
         mensagem.innerText = "⚠️ Preencha todos os campos!";
         setTimeout(() => mensagem.classList.remove("show"), 3000);
         return;
     }
-
     let prioridade = prioridadeSelecionada.value;
-
     const requisito = {
         titulo,
         descricao,
@@ -59,17 +50,20 @@ form.addEventListener("submit", function(e) {
         prioridade,
         status
     };
-
     console.log("Requisito:", requisito);
-
-  
     mostrarHistoricoTemp(requisito);
-
-  
     mensagem.className = "show sucesso";
     mensagem.innerText = "✅ Requisito cadastrado com sucesso!";
     setTimeout(() => mensagem.classList.remove("show"), 3000);
-
-   
     form.reset();
+});
+document.getElementById("btnVoltar").addEventListener("click", () => {
+    window.location.href = "Repmanager/index.html";
+});
+document.getElementById("btnProxima").addEventListener("click", () => {
+    if (form.checkValidity()) {
+      window.location.href = "interfacederequisitos/lista.html";
+    } else {
+        form.reportValidity();
+    }
 });
