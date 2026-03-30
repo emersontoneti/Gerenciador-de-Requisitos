@@ -1,5 +1,26 @@
 const form = document.getElementById("formRequisito");
 const mensagem = document.getElementById("mensagem");
+const STORAGE_KEY = "reqmanager_requisitos";
+
+function carregarRequisitos() {
+    const dados = localStorage.getItem(STORAGE_KEY);
+
+    if (!dados) {
+        return [];
+    }
+
+    try {
+        const requisitos = JSON.parse(dados);
+        return Array.isArray(requisitos) ? requisitos : [];
+    } catch (erro) {
+        console.error("Falha ao ler requisitos salvos:", erro);
+        return [];
+    }
+}
+
+function salvarRequisitos(lista) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(lista));
+}
 
 function mostrarHistoricoTemp(req) {
     const container = document.getElementById("historicoTemp");
@@ -44,27 +65,17 @@ form.addEventListener("submit", function(e) {
     }
     let prioridade = prioridadeSelecionada.value;
     const requisito = {
+        id: Date.now(),
         titulo,
         descricao,
         tipo,
         prioridade,
         status
     };
-    console.log("Requisito:", requisito);
-<<<<<<< HEAD
-    mostrarHistoricoTemp(requisito);
-    mensagem.className = "show sucesso";
-    mensagem.innerText = "✅ Requisito cadastrado com sucesso!";
-    setTimeout(() => mensagem.classList.remove("show"), 3000);
-    form.reset();
-});
-document.getElementById("btnVoltar").addEventListener("click", () => {
-    window.location.href = "Repmanager/index.html";
-});
-document.getElementById("btnProxima").addEventListener("click", () => {
-    if (form.checkValidity()) {
-      window.location.href = "interfacederequisitos/lista.html";
-=======
+
+    const requisitos = carregarRequisitos();
+    requisitos.push(requisito);
+    salvarRequisitos(requisitos);
 
     mostrarHistoricoTemp(requisito);
 
@@ -75,18 +86,13 @@ document.getElementById("btnProxima").addEventListener("click", () => {
     form.reset();
 });
 
-
-
-
 document.getElementById("btnVoltar").addEventListener("click", () => {
-    window.location.href = "../index.htm";
+    window.location.href = "../index.php";
 });
-
 
 document.getElementById("btnProxima").addEventListener("click", () => {
     if (form.checkValidity()) {
         window.location.href = "deshboard/lista.html";
->>>>>>> 9f5f5c6 (alterações no submódulo)
     } else {
         form.reportValidity();
     }

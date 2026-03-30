@@ -1,25 +1,51 @@
-let requisitos = [
-    {
-        titulo: "Login de usuário",
-        descricao: "Sistema deve permitir login",
-        tipo: "funcional",
-        prioridade: "alta",
-        status: "aberto"
-    },
-    {
-        titulo: "Tempo de resposta",
-        descricao: "Sistema deve responder em até 2s",
-        tipo: "nao-funcional",
-        prioridade: "media",
-        status: "desenvolvimento"
+const STORAGE_KEY = "reqmanager_requisitos";
+let requisitos = carregarRequisitos();
+salvarRequisitos(requisitos);
+
+function carregarRequisitos() {
+    const dados = localStorage.getItem(STORAGE_KEY);
+
+    if (!dados) {
+        return [];
     }
-];
+
+    try {
+        const lista = JSON.parse(dados);
+        if (!Array.isArray(lista)) {
+            return [];
+        }
+
+        const listaNormalizada = lista.map((item, index) => ({
+            id: item.id || `${Date.now()}-${index}`,
+            titulo: item.titulo || "Sem titulo",
+            descricao: item.descricao || "Sem descricao",
+            tipo: item.tipo || "nao-funcional",
+            prioridade: item.prioridade || "baixa",
+            status: item.status || "aberto"
+        }));
+
+        return listaNormalizada;
+    } catch (erro) {
+        console.error("Falha ao ler requisitos salvos:", erro);
+        return [];
+    }
+}
+
+function salvarRequisitos(lista) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(lista));
+}
 
 function renderizarLista(lista) {
     const container = document.getElementById("lista");
     container.innerHTML = "";
 
-    lista.forEach((req, index) => {
+    if (lista.length === 0) {
+        container.innerHTML = "<p>Nenhum requisito cadastrado ainda.</p>";
+        atualizarMetricas(lista);
+        return;
+    }
+
+    lista.forEach((req) => {
         const div = document.createElement("div");
         div.classList.add("card-requisito");
 
@@ -35,8 +61,9 @@ function renderizarLista(lista) {
   
         div.querySelector(".btn-excluir").onclick = () => {
             if (confirm("Deseja excluir este requisito?")) {
-                requisitos.splice(index, 1); // remove do array
-                renderizarLista(requisitos); // atualiza tela
+                requisitos = requisitos.filter((item) => item.id !== req.id);
+                salvarRequisitos(requisitos);
+                filtrar();
             }
         };
 
@@ -72,7 +99,7 @@ function filtrar() {
     const tipo = document.getElementById("filtroTipo").value;
     const status = document.getElementById("filtroStatus").value;
 
-    let filtrados = requisitos;
+    let filtrados = [...requisitos];
 
     if (tipo) {
         filtrados = filtrados.filter(r => r.tipo === tipo);

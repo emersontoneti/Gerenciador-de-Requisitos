@@ -6,26 +6,12 @@
     <link rel="stylesheet" href="requisitos.css">
 </head>
 <body>
-<<<<<<< HEAD
-    <form id="formRequisito">
-        <h2>Cadastro de Requisito</h2> 
-        <label for="titulo">Título</label>
-        <input type="text" id="titulo" name="titulo" placeholder="Ex: Cadastro de usuário" required>
-        <label for="descricao">Descrição</label>
-        <textarea id="descricao" name="descricao" placeholder="Descreva o requisito" required></textarea> 
-=======
-
-
     <form id="formRequisito" novalidate>
         <h2>Cadastro de Requisito</h2>
-        
         <label for="titulo">Título</label>
         <input type="text" id="titulo" name="titulo" placeholder="Ex: Cadastro de usuário">
-        
         <label for="descricao">Descrição</label>
         <textarea id="descricao" name="descricao" placeholder="Descreva o requisito"></textarea>
-        
->>>>>>> 9f5f5c6 (alterações no submódulo)
         <label for="tipo">Classificação</label>
         <select id="tipo" name="tipo">
             <option value="">Selecione</option>
@@ -44,26 +30,13 @@
         </select> 
         <button type="submit">CADASTRAR</button>
         <p id="mensagem"></p>
-    <div class="nav-buttons">
-        <button type="button">⬅ Voltar</button>
-        <button type="button">Próxima ➡</button>
-    </div>
-</form>
+        <div class="nav-buttons">
+            <button type="button" id="btnVoltar">⬅ Voltar</button>
+            <button type="button" id="btnProxima">Próxima ➡</button>
+        </div>
     </form>
-<<<<<<< HEAD
-    <div id="historicoTemp"></div>
-=======
-
 
     <div id="historicoTemp"></div>
-
-  
-    <button type="button" id="btnVoltar" class="seta seta-esquerda">⬅</button>
-    <button type="button" id="btnProxima" class="seta seta-direita">➡</button>
-
-   
->>>>>>> 9f5f5c6 (alterações no submódulo)
     <script src="requisitos.js"></script>
-</body>
 </body>
 </html>

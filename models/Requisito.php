@@ -59,5 +59,5 @@ class Requisito {
 
     return $stmt->execute();
 }
-
+}
 ?>
