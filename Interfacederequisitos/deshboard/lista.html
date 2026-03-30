@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>ReqManager - Lista de Requisitos</title>
+    <link rel="stylesheet" href="lista.css">
+</head>
+
+<body>
+
+
+<button class="seta seta-esquerda" onclick="voltar()">⬅</button>
+
+<div class="container">
+
+    <h2>📋 Lista de Requisitos</h2>
+
+  
+    <div class="metricas">
+        <div class="card-metrica">
+            <p>Total</p>
+            <h3 id="total">0</h3>
+        </div>
+
+        <div class="card-metrica">
+            <p>Funcionais</p>
+            <h3 id="funcionais">0</h3>
+            <span id="percFuncionais" class="porcentagem">0%</span>
+        </div>
+
+        <div class="card-metrica">
+            <p>Não Funcionais</p>
+            <h3 id="naoFuncionais">0</h3>
+            <span id="percNaoFuncionais" class="porcentagem">0%</span>
+        </div>
+    </div>
+
+
+    <div class="filtros">
+        <div class="grupo-filtro">
+            <label>Tipo</label>
+            <select id="filtroTipo">
+                <option value="">Todos</option>
+                <option value="funcional">Funcional</option>
+                <option value="nao-funcional">Não Funcional</option>
+            </select>
+        </div>
+
+        <div class="grupo-filtro">
+            <label>Status</label>
+            <select id="filtroStatus">
+                <option value="">Todos</option>
+                <option value="aberto">Aberto</option>
+                <option value="desenvolvimento">Em desenvolvimento</option>
+                <option value="concluido">Concluído</option>
+            </select>
+        </div>
+
+        <button class="btn-filtrar" onclick="filtrar()">🔍 Filtrar</button>
+    </div>
+
+ 
+    <div id="lista" class="lista-requisitos"></div>
+
+</div>
+
+<script>
+function voltar() {
+    window.location.href = "../requisitos.html";
+}
+</script>
+
+<script src="lista.js"></script>
+
+</body>
+</html>

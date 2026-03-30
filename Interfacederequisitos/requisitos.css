@@ -1,3 +1,4 @@
+
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2);
@@ -10,6 +11,12 @@ body {
     padding: 20px;
     margin: 0;
 }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 9f5f5c6 (alterações no submódulo)
 form {
     background-color: #ffffff;
     padding: 40px;
@@ -18,14 +25,30 @@ form {
     width: 400px;
     transition: transform 0.5s ease;
 }
+<<<<<<< HEAD
 form:hover {
     transform: translateY(-5px);
 }
+=======
+
+form:hover {
+    transform: translateY(-5px);
+}
+
+
+
+>>>>>>> 9f5f5c6 (alterações no submódulo)
 h2 {
     text-align: center;
     margin-bottom: 25px;
     color: #333;
 }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 9f5f5c6 (alterações no submódulo)
 label {
     display: block;
     margin-top: 15px;
@@ -33,7 +56,16 @@ label {
     font-weight: bold;
     color: #555;
 }
+<<<<<<< HEAD
 input[type="text"], textarea, select {
+=======
+
+
+
+input[type="text"],
+textarea,
+select {
+>>>>>>> 9f5f5c6 (alterações no submódulo)
     width: 100%;
     padding: 12px;
     margin-top: 5px;
@@ -43,18 +75,43 @@ input[type="text"], textarea, select {
     font-size: 14px;
     transition: all 0.3s ease;
 }
+<<<<<<< HEAD
 input:focus, textarea:focus, select:focus {
+=======
+
+input:focus,
+textarea:focus,
+select:focus {
+>>>>>>> 9f5f5c6 (alterações no submódulo)
     border-color: #667eea;
     box-shadow: 0 0 8px rgba(102,126,234,0.5);
     outline: none;
 }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 9f5f5c6 (alterações no submódulo)
 textarea {
     resize: vertical;
     height: 90px;
 }
+<<<<<<< HEAD
 input[type="radio"] {
     margin-right: 5px;
 }
+=======
+
+
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+
+
+>>>>>>> 9f5f5c6 (alterações no submódulo)
 form button {
     display: block;
     width: 100%;
@@ -76,6 +133,12 @@ form button:hover {
 form button:active {
     transform: scale(0.98);
 }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 9f5f5c6 (alterações no submódulo)
 #mensagem {
     text-align: center;
     margin-top: 15px;
@@ -98,6 +161,12 @@ form button:active {
     background: #fdecea;
     color: #c62828;
 }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 9f5f5c6 (alterações no submódulo)
 #historicoTemp {
     position: fixed;
     bottom: 20px;
@@ -106,7 +175,7 @@ form button:active {
 .card-temp {
     background: #fff;
     border-left: 5px solid #4CAF50;
-    padding: 20px 15px 15px 15px;
+    padding: 20px 15px 15px;
     margin-top: 10px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -114,6 +183,10 @@ form button:active {
     position: relative;
     width: 250px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9f5f5c6 (alterações no submódulo)
 .card-temp button {
     position: absolute;
     top: 6px;
@@ -123,10 +196,6 @@ form button:active {
     font-size: 18px;
     cursor: pointer;
     color: #666;
-    padding: 0;
-    margin: 0;
-    width: auto;
-    line-height: 1;
 }
 .nav-buttons {
     display: flex;
@@ -166,6 +235,60 @@ form button:active {
     color: #000;
 }
 
+<<<<<<< HEAD
+=======
+
+
+.seta {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    width: 50px;
+    height: 50px;
+    
+    border-radius: 50%;
+    border: none;
+    
+    background: #ffffff;
+    color: #667eea;
+    
+    font-size: 20px;
+    font-weight: bold;
+    
+    cursor: pointer;
+    
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.seta-esquerda {
+    left: 20px;
+}
+
+.seta-direita {
+    right: 20px;
+}
+
+.seta:hover {
+    background: #667eea;
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.seta:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+
+
+>>>>>>> 9f5f5c6 (alterações no submódulo)
 @keyframes aparecer {
     from {
         opacity: 0;

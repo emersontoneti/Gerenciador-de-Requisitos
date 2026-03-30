@@ -51,6 +51,7 @@ form.addEventListener("submit", function(e) {
         status
     };
     console.log("Requisito:", requisito);
+<<<<<<< HEAD
     mostrarHistoricoTemp(requisito);
     mensagem.className = "show sucesso";
     mensagem.innerText = "✅ Requisito cadastrado com sucesso!";
@@ -63,6 +64,29 @@ document.getElementById("btnVoltar").addEventListener("click", () => {
 document.getElementById("btnProxima").addEventListener("click", () => {
     if (form.checkValidity()) {
       window.location.href = "interfacederequisitos/lista.html";
+=======
+
+    mostrarHistoricoTemp(requisito);
+
+    mensagem.className = "show sucesso";
+    mensagem.innerText = "✅ Requisito cadastrado com sucesso!";
+    setTimeout(() => mensagem.classList.remove("show"), 3000);
+
+    form.reset();
+});
+
+
+
+
+document.getElementById("btnVoltar").addEventListener("click", () => {
+    window.location.href = "../index.htm";
+});
+
+
+document.getElementById("btnProxima").addEventListener("click", () => {
+    if (form.checkValidity()) {
+        window.location.href = "deshboard/lista.html";
+>>>>>>> 9f5f5c6 (alterações no submódulo)
     } else {
         form.reportValidity();
     }
