@@ -43,14 +43,14 @@ Passos:
 
 ## Alunos
 
-Bruno Angelo de Camargo Abreu
-Bruno Guilherme
-Emerson de Matos Toneti
-Giovanna Takamori
-Guilherme Augusto dos Santos
-Luisa Mosca de Oliveira
-Pedro Henrique Lauris Marfil M. de Oliveira
-Rafael Zanini
-Vitor Baptistella Calisto
+- Bruno Angelo de Camargo Abreu
+- Bruno Guilherme
+- Emerson de Matos Toneti
+- Giovanna Takamori
+- Guilherme Augusto dos Santos
+- Luisa Mosca de Oliveira
+- Pedro Henrique Lauris Marfil M. de Oliveira
+- Rafael Zanini
+- Vitor Baptistella Calisto
 
 
