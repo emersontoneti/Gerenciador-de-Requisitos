@@ -1,38 +1,20 @@
-const STORAGE_KEY = "reqmanager_requisitos";
-let requisitos = carregarRequisitos();
-salvarRequisitos(requisitos);
+// Pega o id_projeto da URL
+const params = new URLSearchParams(window.location.search);
+const id_projeto = params.get("id_projeto");
 
-function carregarRequisitos() {
-    const dados = localStorage.getItem(STORAGE_KEY);
+function carregarRequisitos(tipo = "", status = "") {
+    let url = "../../listar_requisitos.php?";
+    
+    if (id_projeto) url += "id_projeto=" + id_projeto + "&";
+    if (tipo) url += "tipo=" + tipo + "&";
+    if (status) url += "status=" + status + "&";
 
-    if (!dados) {
-        return [];
-    }
-
-    try {
-        const lista = JSON.parse(dados);
-        if (!Array.isArray(lista)) {
-            return [];
-        }
-
-        const listaNormalizada = lista.map((item, index) => ({
-            id: item.id || `${Date.now()}-${index}`,
-            titulo: item.titulo || "Sem titulo",
-            descricao: item.descricao || "Sem descricao",
-            tipo: item.tipo || "nao-funcional",
-            prioridade: item.prioridade || "baixa",
-            status: item.status || "aberto"
-        }));
-
-        return listaNormalizada;
-    } catch (erro) {
-        console.error("Falha ao ler requisitos salvos:", erro);
-        return [];
-    }
-}
-
-function salvarRequisitos(lista) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(lista));
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        renderizarLista(data.requisitos);
+        atualizarMetricas(data.metricas);
+    });
 }
 
 function renderizarLista(lista) {
@@ -40,55 +22,35 @@ function renderizarLista(lista) {
     container.innerHTML = "";
 
     if (lista.length === 0) {
-        container.innerHTML = "<p>Nenhum requisito cadastrado ainda.</p>";
-        atualizarMetricas(lista);
+        container.innerHTML = "<p>Nenhum requisito encontrado.</p>";
         return;
     }
 
     lista.forEach((req) => {
         const div = document.createElement("div");
         div.classList.add("card-requisito");
-
         div.innerHTML = `
-            <button class="btn-excluir">✖</button>
             <strong>${req.titulo}</strong>
             <p>${req.descricao}</p>
             <p><b>Tipo:</b> ${req.tipo}</p>
             <p><b>Prioridade:</b> ${req.prioridade}</p>
             <span class="badge ${req.status}">${req.status}</span>
         `;
-
-  
-        div.querySelector(".btn-excluir").onclick = () => {
-            if (confirm("Deseja excluir este requisito?")) {
-                requisitos = requisitos.filter((item) => item.id !== req.id);
-                salvarRequisitos(requisitos);
-                filtrar();
-            }
-        };
-
         container.appendChild(div);
     });
-
-    atualizarMetricas(lista);
 }
 
-function atualizarMetricas(lista) {
-    const total = lista.length;
-
-    const funcionais = lista.filter(r => r.tipo === "funcional").length;
-    const naoFuncionais = lista.filter(r => r.tipo === "nao-funcional").length;
-
-    document.getElementById("total").innerText = total;
-    document.getElementById("funcionais").innerText = funcionais;
-    document.getElementById("naoFuncionais").innerText = naoFuncionais;
+function atualizarMetricas(metricas) {
+    document.getElementById("total").innerText = metricas.total;
+    document.getElementById("funcionais").innerText = metricas.funcionais;
+    document.getElementById("naoFuncionais").innerText = metricas.nao_funcionais;
 
     let percFuncionais = 0;
     let percNaoFuncionais = 0;
 
-    if (total > 0) {
-        percFuncionais = ((funcionais / total) * 100).toFixed(1);
-        percNaoFuncionais = ((naoFuncionais / total) * 100).toFixed(1);
+    if (metricas.total > 0) {
+        percFuncionais = ((metricas.funcionais / metricas.total) * 100).toFixed(1);
+        percNaoFuncionais = ((metricas.nao_funcionais / metricas.total) * 100).toFixed(1);
     }
 
     document.getElementById("percFuncionais").innerText = percFuncionais + "%";
@@ -98,20 +60,13 @@ function atualizarMetricas(lista) {
 function filtrar() {
     const tipo = document.getElementById("filtroTipo").value;
     const status = document.getElementById("filtroStatus").value;
+    carregarRequisitos(tipo, status);
+}
 
-    let filtrados = [...requisitos];
-
-    if (tipo) {
-        filtrados = filtrados.filter(r => r.tipo === tipo);
-    }
-
-    if (status) {
-        filtrados = filtrados.filter(r => r.status === status);
-    }
-
-    renderizarLista(filtrados);
+function voltar() {
+    window.location.href = "../requisitos.html?id_projeto=" + id_projeto;
 }
 
 window.onload = () => {
-    renderizarLista(requisitos);
+    carregarRequisitos();
 };
