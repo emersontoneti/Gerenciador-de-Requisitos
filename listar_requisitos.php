@@ -7,15 +7,40 @@ $prioridade = isset($_GET['prioridade']) ? $_GET['prioridade'] : '';
 $status = isset($_GET['status']) ? $_GET['status'] : '';
 $id_projeto = isset($_GET['id_projeto']) ? $_GET['id_projeto'] : '';
 
-// Monta a query com os filtros
+// Monta a query com os filtros usando prepared statements para evitar SQL Injection
 $sql = "SELECT * FROM requisitos WHERE 1=1";
+$tipos_bind = "";
+$valores_bind = [];
 
-if ($tipo !== '') $sql .= " AND tipo = '$tipo'";
-if ($prioridade !== '') $sql .= " AND prioridade = '$prioridade'";
-if ($status !== '') $sql .= " AND status = '$status'";
-if ($id_projeto !== '') $sql .= " AND id_projeto = '$id_projeto'";
+if ($tipo !== '') {
+    $sql .= " AND tipo = ?";
+    $tipos_bind .= "s";
+    $valores_bind[] = $tipo;
+}
+if ($prioridade !== '') {
+    $sql .= " AND prioridade = ?";
+    $tipos_bind .= "s";
+    $valores_bind[] = $prioridade;
+}
+if ($status !== '') {
+    $sql .= " AND status = ?";
+    $tipos_bind .= "s";
+    $valores_bind[] = $status;
+}
+if ($id_projeto !== '') {
+    $sql .= " AND id_projeto = ?";
+    $tipos_bind .= "i";
+    $valores_bind[] = $id_projeto;
+}
 
-$resultado = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+
+if (!empty($tipos_bind)) {
+    $stmt->bind_param($tipos_bind, ...$valores_bind);
+}
+
+$stmt->execute();
+$resultado = $stmt->get_result();
 
 $requisitos = [];
 while ($row = $resultado->fetch_assoc()) {

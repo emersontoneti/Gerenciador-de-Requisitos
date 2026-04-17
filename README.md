@@ -40,17 +40,3 @@ Passos:
 1. Abra o terminal na pasta do projeto: E:/Clone/Repmanager
 2. Execute: php -S localhost:8000
 3. Acesse no navegador: http://localhost:8000
-
-## Alunos
-
-- Bruno Angelo de Camargo Abreu
-- Bruno Guilherme
-- Emerson de Matos Toneti
-- Giovanna Takamori
-- Guilherme Augusto dos Santos
-- Luisa Mosca de Oliveira
-- Pedro Henrique Lauris Marfil M. de Oliveira
-- Rafael Zanini
-- Vitor Baptistella Calisto
-
-

@@ -2,9 +2,14 @@
 require_once 'conexao.php';
 require_once 'models/Projeto.php';
 
-$nome = $_POST['nome'];
-$descricao = $_POST['descricao'];
-$data_inicio = $_POST['data_inicio'];
+$nome = $_POST['nome'] ?? '';
+$descricao = $_POST['descricao'] ?? '';
+$data_inicio = $_POST['data_inicio'] ?? '';
+
+if(empty($nome) || empty($descricao) || empty($data_inicio)) {
+    echo json_encode(["sucesso" => false, "erro" => "Preencha todos os campos."]);
+    exit;
+}
 
 $sql = "INSERT INTO projetos (nome, descricao, data_inicio) VALUES (?, ?, ?)";
 $stmt = $conn->prepare($sql);
